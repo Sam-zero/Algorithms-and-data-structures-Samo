@@ -3,13 +3,8 @@ public class Main {
 
     //1.Complexity: linear - O(N)
     public static int mini(int[] a, int n) {
-        int min = a[0];
-        for (int i = 0; i < n; i++) {
-            if (a[i] < min) {
-                min = a[i];
-            }
-        }
-        return min;
+        if (n==1) return a[0];
+        return Math.min(a[n-1], mini(a,n-1));
     }
     public static void task1() {
         Scanner sc = new Scanner(System.in);
@@ -23,11 +18,8 @@ public class Main {
 
     //2.Complexity: linear - O(N)
     public static double avarage(int[] a, int n) {
-        double s = 0;
-        for (int i = 0; i < n; i++) {
-            s += a[i];
-        }
-        return s/n;
+        if(n==1) return a[0];
+        return (a[n-1]+(n-1)*avarage(a,n-1))/n;
     }
     public static void task2() {
         Scanner sc = new Scanner(System.in);
@@ -116,12 +108,9 @@ public class Main {
 
     //8.Complexity: linear - O(N)
     public static int digit(String str) {
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) < '0' || str.charAt(i) > '9') {
-                return 0;
-            }
-        }
-        return 1;
+        if(str.length()==0) return 1;
+        if((str.charAt(0)<'0') || (str.charAt(0)>'9')) return 0;
+        return digit(str.substring(1));
     }
     public static void task8() {
         Scanner sc = new Scanner(System.in);
